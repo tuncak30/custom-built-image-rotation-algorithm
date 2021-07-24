@@ -3,7 +3,6 @@ import Header from "./Components/Header";
 import Sidebar from "./Components/Sidebar";
 import Canvas from "./Components/Canvas";
 import {useRef, useState} from "react";
-import {onlyNumbers} from "./Utils";
 
 function App() {
     const [rotationDegree, setRotationDegree] = useState(0);
@@ -11,7 +10,7 @@ function App() {
     const [imageDimensions, setImageDimensions] = useState({width: "-", height: "-"});
     const [uploadedImgSrc, setUploadedImgSrc]  = useState(null);
     const imgElement = useRef(null);
-
+    const [deg, setRotationDeg] = useState(0);
     return (
         <>
             <Header />
@@ -19,19 +18,17 @@ function App() {
                 selectedFile={selectedFile}
                 setSelectedFile={setSelectedFile}
                 rotationDegree={rotationDegree}
-                setRotationDegree={(e) => {
-                    if (onlyNumbers.test(e.target.value)) {
-                        setRotationDegree(e.target.value);
-                    }
-                }}
+                setRotationDegree={setRotationDegree}
                 imageDimensions={imageDimensions}
                 setUploadedImgSrc={setUploadedImgSrc}
+                doRotate={(deg) => setRotationDeg(deg)}
             />
             <Canvas
                 uploadedImgSrc={uploadedImgSrc}
                 imgElement={imgElement}
+                rotationDegree={rotationDegree}
                 setImageDimensions={setImageDimensions}
-
+                deg={deg}
             />
         </>
     );

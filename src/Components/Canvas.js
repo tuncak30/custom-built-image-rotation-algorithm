@@ -5,7 +5,8 @@ function Canvas(props) {
     const {
         uploadedImgSrc,
         imgElement,
-        setImageDimensions
+        setImageDimensions,
+        deg
     } = props;
 
     const canvasRef = useRef(null);
@@ -16,9 +17,15 @@ function Canvas(props) {
         if(imgElement.current){
             drawImage(imgElement.current);
         }
-    }, [height, width])
+    }, [height, width, imgElement])
 
-    function drawImage(img) {
+    useEffect(() => {
+        if(deg !== 0){
+            drawImage(imgElement.current, deg);
+        }
+    }, [deg])
+
+    function drawImage(img, deg) {
         const ctx = canvasRef.current.getContext('2d');
         const canvas = ctx.canvas;
         const hRatio = canvas.width  / img.width;
@@ -33,8 +40,12 @@ function Canvas(props) {
                 centerShift_x, centerShift_y, img.width * ratio, img.height * ratio);
         }
         else{
-            ctx.drawImage(img, (canvas.width / 2), (canvas.height / 2), img.width, img.height);
+            ctx.drawImage(img, ((canvas.width / 2) - (img.width / 2)), ((canvas.height / 2) - (img.height / 2)), img.width, img.height);
         }
+
+        const imageData = ctx.getImageData(0, 0, imgElement.current.naturalWidth, imgElement.current.naturalHeight);
+        console.log(deg);
+        console.log(imageData);
     }
 
     return (
@@ -48,17 +59,11 @@ function Canvas(props) {
                     ref={imgElement}
                     onLoad={() => {
                         drawImage(imgElement.current);
-
-                        /*const imageData = ctx.getImageData(0, 0, imgElement.current.naturalWidth, imgElement.current.naturalHeight);
-                        console.log(imageData);*/
-
-                        setImageDimensions(prev => (
-                            {
+                        setImageDimensions(prev => ({
                                 ...prev,
                                 height: imgElement.current.naturalHeight,
                                 width: imgElement.current.naturalWidth,
-                            }
-                        ))
+                            }))
                     }}
                     /> : null
             }

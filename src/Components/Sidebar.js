@@ -1,3 +1,5 @@
+import {onlyNumbers} from "../Utils";
+
 function Sidebar(props) {
     const {
         rotationDegree,
@@ -5,7 +7,8 @@ function Sidebar(props) {
         selectedFile,
         setSelectedFile,
         imageDimensions,
-        setUploadedImgSrc
+        setUploadedImgSrc,
+        doRotate
     } = props;
 
     return (
@@ -42,9 +45,13 @@ function Sidebar(props) {
                     <input
                         type="text"
                         value={rotationDegree}
-                        onChange={(e) => setRotationDegree(e)}
+                        onChange={(e) => {
+                            if (onlyNumbers.test(e.target.value)) {
+                                setRotationDegree(e.target.value);
+                            }
+                        }}
                     />
-                    <button className="small">Apply</button>
+                    <button onClick={()=> doRotate(rotationDegree)} className="small">Apply</button>
                 </div>
             </div>
         </aside>
