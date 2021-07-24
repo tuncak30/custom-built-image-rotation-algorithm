@@ -1,0 +1,116 @@
+:root {
+    --headerHeight: 60px;
+    --sidebarWidth: 250px;
+
+    --teal: #00c5c0;
+    --lightGray: #e0e0e0;
+    --blue: #0000ff;
+    --lightBlue: #4747e6;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial;
+    font-weight: 300;
+    min-height: 100vh;
+}
+
+#root{
+    min-height: 100vh;
+}
+
+header{
+    height: var(--headerHeight);
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: var(--teal);
+    color: #fff;
+}
+
+aside{
+    position: absolute;
+    left: 0px;
+    bottom: 0;
+    top: var(--headerHeight);
+    width: var(--sidebarWidth);
+    background-color: var(--lightGray);
+}
+
+button{
+    color: #fff;
+    text-align: center;
+    background-color: var(--blue);
+    border: 0;
+    transition: all 200ms ease;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: var(--lightBlue);
+}
+
+button.big{
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+button.small{
+    padding: 8px 10px;
+    font-size: 12px;
+}
+
+#file-input-container{
+    text-align: center;
+    padding: 20px 0px;
+    border-bottom: 1px solid black;
+}
+
+#file-data-container{
+    padding: 20px;
+}
+
+.file-data-rows{
+    margin-bottom: 20px;
+}
+
+.file-data-rows label{
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.file-data-rows input[type="text"]{
+    border-radius: 5px;
+    border: 1px solid #000;
+    display: inline-block;
+    padding: 5px;
+    font-size: 16px;
+    width: 50px;
+}
+
+.file-upload-button{
+    position: relative;
+}
+
+input[type="file"] {
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.file-data-rows button{
+    display: inline-block;
+    margin-left: 5px;
+}
+
