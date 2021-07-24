@@ -44,6 +44,14 @@ aside{
     background-color: var(--lightGray);
 }
 
+#canvas-container{
+    position: absolute;
+    left: var(--sidebarWidth);
+    top: var(--headerHeight);
+    bottom: 0;
+    right: 0;
+}
+
 button{
     color: #fff;
     text-align: center;
@@ -86,6 +94,10 @@ button.small{
     margin-right: 5px;
 }
 
+canvas img{
+    display: none;
+}
+
 .file-data-rows input[type="text"]{
     border-radius: 5px;
     border: 1px solid #000;
@@ -114,3 +126,7 @@ input[type="file"] {
     margin-left: 5px;
 }
 
+canvas{
+    width: 100%;
+    height: 100%;
+}

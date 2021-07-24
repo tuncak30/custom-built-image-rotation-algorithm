@@ -8,7 +8,6 @@ function Sidebar(props) {
         setUploadedImgSrc
     } = props;
 
-
     return (
         <aside id="sidebar">
             <div id="file-input-container">
