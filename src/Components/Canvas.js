@@ -1,4 +1,4 @@
-import {useRef} from "react";
+import {useEffect, useRef} from "react";
 import useWindowResize from "../Hooks/useWindowResize";
 
 function Canvas(props) {
@@ -12,7 +12,14 @@ function Canvas(props) {
     const containerRef = useRef(null);
     const [height, width] = useWindowResize();
 
-    function drawImage(img, ctx) {
+    useEffect(() => {
+        if(imgElement.current){
+            drawImage(imgElement.current);
+        }
+    }, [height, width])
+
+    function drawImage(img) {
+        const ctx = canvasRef.current.getContext('2d');
         const canvas = ctx.canvas;
         const hRatio = canvas.width  / img.width;
         const vRatio =  canvas.height / img.height;
@@ -40,8 +47,7 @@ function Canvas(props) {
                     alt="Uploaded alt tag"
                     ref={imgElement}
                     onLoad={() => {
-                        const ctx = canvasRef.current.getContext('2d');
-                        drawImage( imgElement.current, ctx);
+                        drawImage(imgElement.current);
 
                         /*const imageData = ctx.getImageData(0, 0, imgElement.current.naturalWidth, imgElement.current.naturalHeight);
                         console.log(imageData);*/
