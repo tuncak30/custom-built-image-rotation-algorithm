@@ -1,4 +1,4 @@
-import {onlyNumbers} from "../Utils";
+import {onlyNumbers, onlyNumbersAndDash} from "../Utils";
 
 function Sidebar(props) {
     const {
@@ -46,7 +46,7 @@ function Sidebar(props) {
                         type="text"
                         value={rotationDegree}
                         onChange={(e) => {
-                            if (onlyNumbers.test(e.target.value)) {
+                            if (onlyNumbersAndDash.test(e.target.value)) {
                                 setRotationDegree(e.target.value);
                             }
                         }}

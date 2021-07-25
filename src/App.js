@@ -5,12 +5,12 @@ import Canvas from "./Components/Canvas";
 import {useRef, useState} from "react";
 
 function App() {
-    const [rotationDegree, setRotationDegree] = useState(0);
+    const [rotationDegree, setRotationDegree] = useState("");
     const [selectedFile, setSelectedFile] = useState(null);
     const [imageDimensions, setImageDimensions] = useState({width: "-", height: "-"});
     const [uploadedImgSrc, setUploadedImgSrc]  = useState(null);
     const imgElement = useRef(null);
-    const [deg, setRotationDeg] = useState(0);
+    const [deg, setRotationDeg] = useState("");
     return (
         <>
             <Header />
@@ -26,7 +26,6 @@ function App() {
             <Canvas
                 uploadedImgSrc={uploadedImgSrc}
                 imgElement={imgElement}
-                rotationDegree={rotationDegree}
                 setImageDimensions={setImageDimensions}
                 deg={deg}
             />

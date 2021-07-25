@@ -1,1 +1,1 @@
-export const onlyNumbers = /^[0-9.]*$/;
+export const onlyNumbersAndDash = /^[0-9-]*$/;
