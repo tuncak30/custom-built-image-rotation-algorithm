@@ -1,1 +1,1 @@
-export const onlyNumbersAndDash = /^[0-9-]*$/;
+export const onlyNumbersAndDash = /^[0-9-]*$/; // We only want to allow numerals and dash for rotation degree input

@@ -1,4 +1,4 @@
-import {useEffect, useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import useWindowResize from "../Hooks/useWindowResize";
 
 function Canvas(props) {
@@ -11,25 +11,27 @@ function Canvas(props) {
 
     const canvasRef = useRef(null);
     const containerRef = useRef(null);
+
+    /* Get window height and width onResize */
     const [height, width] = useWindowResize();
+
+    /* Performance API timer start and timer end */
+    const [t0, setT0] = useState(0);
+    const [t1, setT1] = useState(0);
 
     useEffect(() => {
         if(imgElement.current){
-            drawImage(imgElement.current);
+            rotate(imgElement.current, deg);
         }
-    }, [height, width, imgElement])
+    }, [height, width, imgElement, deg])
 
-    useEffect(() => {
-        if(deg !== "" && imgElement.current){
-            drawImage(imgElement.current, deg);
-        }
-    }, [deg])
-
-    function drawImage(img, deg) {
+    function rotate(img, deg) {
+        setT0(performance.now());
+        deg = deg ? deg : 0;
         const ctx = canvasRef.current.getContext("2d");
         const canvas = ctx.canvas;
-        const hRatio = canvas.width  / img.width;
-        const vRatio =  canvas.height / img.height;
+        const hRatio = canvas.width  / img.height;
+        const vRatio =  canvas.height / img.width;
         const ratio  = Math.min(hRatio, vRatio);
         const centerShift_x = (canvas.width - img.width * ratio) / 2;
         const centerShift_y = (canvas.height - img.height * ratio) / 2;
@@ -47,10 +49,12 @@ function Canvas(props) {
         const w32 = new Uint32Array(pxWrite.data.buffer);
         const pxRead = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
         const r32 = new Uint32Array(pxRead.data.buffer);
+        const ang = - 1 * (deg * (Math.PI / 180)); // multiply by -1 to get clockwise rotation on positive values
 
-        const ang = deg * (Math.PI / 180);
-        scanLine(canvas.width / 2, canvas.height / 2, ang, r32, w32, canvas.width, canvas.height);
+        scanLine(canvas.width / 2, canvas.height / 2,  ang, r32, w32, canvas.width, canvas.height);
         ctx.putImageData(pxWrite,0,0);
+
+        setT1(performance.now());
     }
 
     function scanLine(ox, oy, ang, r32, w32, W, H) {
@@ -79,6 +83,10 @@ function Canvas(props) {
 
     return (
         <div ref={containerRef} id="canvas-container">
+            {
+                (t1 - t0) === 0 ? null : <div id="timer">Rendered in {Math.round((t1 - t0) * 100) / 100} ms</div>
+            }
+
             <canvas ref={canvasRef} width={width - 250} height={height - 60}>
             {
                 uploadedImgSrc ?
@@ -87,7 +95,7 @@ function Canvas(props) {
                     alt="Uploaded alt tag"
                     ref={imgElement}
                     onLoad={() => {
-                        drawImage(imgElement.current);
+                        rotate(imgElement.current, deg);
                         setImageDimensions(prev => ({
                                 ...prev,
                                 height: imgElement.current.naturalHeight,

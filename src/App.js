@@ -5,12 +5,14 @@ import Canvas from "./Components/Canvas";
 import {useRef, useState} from "react";
 
 function App() {
+    // We lift the state up to App.js in order to use between two siblings -> Sidebar.js and Canvas.js
     const [rotationDegree, setRotationDegree] = useState("");
     const [selectedFile, setSelectedFile] = useState(null);
     const [imageDimensions, setImageDimensions] = useState({width: "-", height: "-"});
     const [uploadedImgSrc, setUploadedImgSrc]  = useState(null);
     const imgElement = useRef(null);
     const [deg, setRotationDeg] = useState("");
+
     return (
         <>
             <Header />

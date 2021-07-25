@@ -1,4 +1,4 @@
-import {onlyNumbers, onlyNumbersAndDash} from "../Utils";
+import {onlyNumbersAndDash} from "../Utils";
 
 function Sidebar(props) {
     const {
@@ -34,11 +34,11 @@ function Sidebar(props) {
                 </div>
                 <div className="file-data-rows">
                     <label>Width:</label>
-                    <span>{imageDimensions ? imageDimensions.width : '-'}</span>
+                    <span>{imageDimensions.width !== "-" ? `${imageDimensions.width} px` : '-'}</span>
                 </div>
                 <div className="file-data-rows">
                     <label>Height:</label>
-                    <span>{imageDimensions ? imageDimensions.height : '-'}</span>
+                    <span>{imageDimensions.height !== "-" ? `${imageDimensions.height} px` : '-'}</span>
                 </div>
                 <div className="file-data-rows">
                     <label>Rotate:</label>

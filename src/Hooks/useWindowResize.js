@@ -1,3 +1,5 @@
+// Create a custom hook to listen windowResize event so that we can resize our canvas element
+
 import {useState,useEffect} from "react";
 
 function useWindowResize(){
