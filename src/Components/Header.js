@@ -9,7 +9,9 @@ function Header(props) {
 
     return (
         <header className="header">
-            <div opened={sidebarOpened.toString()} onClick={() => setSidebarOpened(!sidebarOpened)} className="toggle-sidebar">
+            <div opened={sidebarOpened.toString()} onClick={() => {
+                setSidebarOpened(!sidebarOpened)
+            }} className="toggle-sidebar">
                 <span></span>
                 <span></span>
                 <span></span>

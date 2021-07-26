@@ -30,9 +30,12 @@ function Canvas(props) {
         deg = deg ? deg : 0;
         const ctx = canvasRef.current.getContext("2d");
         const canvas = ctx.canvas;
-        const hRatio = canvas.width  / img.height;
-        const vRatio =  canvas.height / img.width;
-        const ratio  = Math.min(hRatio, vRatio);
+
+        // We will find the hypotenuse of the image in order to restrict the width and height when rotating
+        const hypotenuse = Math.hypot(img.width, img.height);
+        const hRatio = canvas.width  / ((hypotenuse >= img.width) ? hypotenuse : img.width);
+        const vRatio =  canvas.height / ((hypotenuse >= img.height) ? hypotenuse : img.height);
+        const ratio  = Math.min(hRatio, vRatio) ;
         const centerShift_x = (canvas.width - img.width * ratio) / 2;
         const centerShift_y = (canvas.height - img.height * ratio) / 2;
         ctx.clearRect(0,0,canvas.width, canvas.height);

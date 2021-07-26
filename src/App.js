@@ -10,7 +10,7 @@ function App() {
     const [selectedFile, setSelectedFile] = useState(null);
     const [imageDimensions, setImageDimensions] = useState({width: "-", height: "-"});
     const [uploadedImgSrc, setUploadedImgSrc]  = useState(null);
-    const [sidebarOpened, setSidebarOpened] = useState(window.innerWidth <= 580 ? 'false' : 'true');
+    const [sidebarOpened, setSidebarOpened] = useState(window.innerWidth <= 580 ? false : true);
     const imgElement = useRef(null);
 
     return (
