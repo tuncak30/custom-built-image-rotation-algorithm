@@ -10,17 +10,23 @@ function App() {
     const [selectedFile, setSelectedFile] = useState(null);
     const [imageDimensions, setImageDimensions] = useState({width: "-", height: "-"});
     const [uploadedImgSrc, setUploadedImgSrc]  = useState(null);
+    const [sidebarOpened, setSidebarOpened] = useState(window.innerWidth <= 580 ? 'false' : 'true');
     const imgElement = useRef(null);
 
     return (
         <>
-            <Header />
+            <Header
+                sidebarOpened={sidebarOpened}
+                setSidebarOpened={setSidebarOpened}
+            />
             <Sidebar
                 selectedFile={selectedFile}
                 setSelectedFile={setSelectedFile}
                 setRotationDegree={setRotationDegree}
                 imageDimensions={imageDimensions}
                 setUploadedImgSrc={setUploadedImgSrc}
+                sidebarOpened={sidebarOpened}
+                setSidebarOpened={setSidebarOpened}
             />
             <Canvas
                 uploadedImgSrc={uploadedImgSrc}

@@ -87,7 +87,7 @@ function Canvas(props) {
                 (t1 - t0) === 0 ? null : <div id="timer">Rendered in {Math.round((t1 - t0) * 100) / 100} ms</div>
             }
 
-            <canvas ref={canvasRef} width={width - 250} height={height - 60}>
+            <canvas ref={canvasRef} width={window.innerWidth <= 580 ? window.innerWidth : (width - 250)} height={height - 60}>
             {
                 uploadedImgSrc ?
                     <img

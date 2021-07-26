@@ -7,13 +7,15 @@ function Sidebar(props) {
         selectedFile,
         setSelectedFile,
         imageDimensions,
-        setUploadedImgSrc
+        setUploadedImgSrc,
+        sidebarOpened,
+        setSidebarOpened
     } = props;
 
     const [inputDegree, setInputDegree] = useState("");
 
     return (
-        <aside id="sidebar">
+        <aside id="sidebar" opened={sidebarOpened.toString()}>
             <div id="file-input-container">
                 <button className="big file-upload-button">Upload Image
                     <input
@@ -24,6 +26,7 @@ function Sidebar(props) {
                                 setUploadedImgSrc(URL.createObjectURL(e.target.files[0]));
                                 setRotationDegree("");
                                 setInputDegree("");
+                                setSidebarOpened('false');
                                 setSelectedFile(e.target.files[0]);
                             }
                         }}
@@ -54,7 +57,10 @@ function Sidebar(props) {
                             }
                         }}
                     />
-                    <button onClick={()=> setRotationDegree(inputDegree)} className="small">Apply</button>
+                    <button onClick={()=> {
+                        setSidebarOpened('false');
+                        setRotationDegree(inputDegree);
+                    }} className="small">Apply</button>
                 </div>
             </div>
         </aside>
