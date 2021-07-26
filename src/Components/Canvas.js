@@ -6,7 +6,7 @@ function Canvas(props) {
         uploadedImgSrc,
         imgElement,
         setImageDimensions,
-        deg
+        rotationDegree
     } = props;
 
     const canvasRef = useRef(null);
@@ -21,9 +21,9 @@ function Canvas(props) {
 
     useEffect(() => {
         if(imgElement.current){
-            rotate(imgElement.current, deg);
+            rotate(imgElement.current, rotationDegree);
         }
-    }, [height, width, imgElement, deg])
+    }, [height, width, imgElement, rotationDegree])
 
     function rotate(img, deg) {
         setT0(performance.now());
@@ -61,7 +61,7 @@ function Canvas(props) {
         const xAx = Math.cos(ang);
         const xAy = Math.sin(ang);
         w32.fill(0);
-        var rx, ry, idxW, x = 0, y = 0;
+        let rx, ry, idxW, x = 0, y = 0;
         while (y < H) {
             const xx = x - ox, yy = y - oy;
             rx = xx * xAx - yy * xAy + ox; // Get image coords for row start
@@ -95,7 +95,7 @@ function Canvas(props) {
                     alt="Uploaded alt tag"
                     ref={imgElement}
                     onLoad={() => {
-                        rotate(imgElement.current, deg);
+                        rotate(imgElement.current, rotationDegree);
                         setImageDimensions(prev => ({
                                 ...prev,
                                 height: imgElement.current.naturalHeight,

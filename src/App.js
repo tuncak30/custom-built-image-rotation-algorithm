@@ -11,7 +11,6 @@ function App() {
     const [imageDimensions, setImageDimensions] = useState({width: "-", height: "-"});
     const [uploadedImgSrc, setUploadedImgSrc]  = useState(null);
     const imgElement = useRef(null);
-    const [deg, setRotationDeg] = useState("");
 
     return (
         <>
@@ -19,17 +18,15 @@ function App() {
             <Sidebar
                 selectedFile={selectedFile}
                 setSelectedFile={setSelectedFile}
-                rotationDegree={rotationDegree}
                 setRotationDegree={setRotationDegree}
                 imageDimensions={imageDimensions}
                 setUploadedImgSrc={setUploadedImgSrc}
-                doRotate={(deg) => setRotationDeg(deg)}
             />
             <Canvas
                 uploadedImgSrc={uploadedImgSrc}
                 imgElement={imgElement}
                 setImageDimensions={setImageDimensions}
-                deg={deg}
+                rotationDegree={rotationDegree}
             />
         </>
     );

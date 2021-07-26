@@ -1,15 +1,16 @@
 import {onlyNumbersAndDash} from "../Utils";
+import {useState} from "react";
 
 function Sidebar(props) {
     const {
-        rotationDegree,
         setRotationDegree,
         selectedFile,
         setSelectedFile,
         imageDimensions,
-        setUploadedImgSrc,
-        doRotate
+        setUploadedImgSrc
     } = props;
+
+    const [inputDegree, setInputDegree] = useState("");
 
     return (
         <aside id="sidebar">
@@ -21,6 +22,8 @@ function Sidebar(props) {
                         onChange={(e) => {
                             if(e.target.files[0]){
                                 setUploadedImgSrc(URL.createObjectURL(e.target.files[0]));
+                                setRotationDegree("");
+                                setInputDegree("");
                                 setSelectedFile(e.target.files[0]);
                             }
                         }}
@@ -44,14 +47,14 @@ function Sidebar(props) {
                     <label>Rotate:</label>
                     <input
                         type="text"
-                        value={rotationDegree}
+                        value={inputDegree}
                         onChange={(e) => {
                             if (onlyNumbersAndDash.test(e.target.value)) {
-                                setRotationDegree(e.target.value);
+                                setInputDegree(e.target.value);
                             }
                         }}
                     />
-                    <button onClick={()=> doRotate(rotationDegree)} className="small">Apply</button>
+                    <button onClick={()=> setRotationDegree(inputDegree)} className="small">Apply</button>
                 </div>
             </div>
         </aside>
