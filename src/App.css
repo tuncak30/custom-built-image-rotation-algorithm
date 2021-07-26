@@ -33,6 +33,7 @@ header{
     font-weight: bold;
     background-color: var(--teal);
     color: #fff;
+    position: relative;
 }
 
 aside{
@@ -42,6 +43,7 @@ aside{
     top: var(--headerHeight);
     width: var(--sidebarWidth);
     background-color: var(--lightGray);
+    transition: all 200ms ease-out;
 }
 
 #canvas-container{
@@ -136,4 +138,94 @@ canvas{
     right: 10px;
     top: 10px;
     font-weight: lighter;
+}
+
+@media all and (max-width: 580px) {
+    aside{
+        left: -250px;
+    }
+
+    header{
+        justify-content: center;
+        padding-left: 0px;
+    }
+}
+
+@media all and (max-width: 305px) {
+    .switch-theme{
+        display: none;
+    }
+}
+/* Below lines are just for fun ;) */
+
+.switch-theme{
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+    right: 10px;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+    transform: scale(1);
+    animation: pulse 2s infinite;
+}
+
+.fancy{
+    font-family: Roboto;
+}
+
+.fancy header{
+    box-shadow: 0 4px 12px -6px #c4c4c4;
+    background-color: #fff;
+    color: #333
+}
+
+#accenture-logo{
+    max-height: 60%;
+}
+
+.fancy aside{
+    background-color: #F2F2F2;
+    box-shadow: 0 4px 12px -6px #c4c4c4;
+}
+
+.fancy #file-input-container{
+    border-bottom: 1px solid #ddd;
+}
+
+.fancy .file-data-rows label{
+    font-weight: 500;
+}
+
+.fancy button {
+    background-color: black;
+    font-weight: 300;
+    border-radius: 5px;
+}
+
+.fancy button:hover{
+    background: #333;
+}
+
+.fancy input[type="text"]{
+    border: none;
+    border-bottom: 2px solid #C4C4C4;
+    text-align: center;
+}
+
+.fancy input[type="text"]:active, .fancy input[type="text"]:focus {
+    border-bottom: 2px solid #be03ff;
+    outline: none;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 5px rgba(0, 0, 0, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
 }
