@@ -26,7 +26,7 @@ function Sidebar(props) {
                                 setUploadedImgSrc(URL.createObjectURL(e.target.files[0]));
                                 setRotationDegree("");
                                 setInputDegree("");
-                                setSidebarOpened('false');
+                                setSidebarOpened(false);
                                 setSelectedFile(e.target.files[0]);
                             }
                         }}
@@ -58,7 +58,7 @@ function Sidebar(props) {
                         }}
                     />
                     <button onClick={()=> {
-                        setSidebarOpened('false');
+                        setSidebarOpened(false);
                         setRotationDegree(inputDegree);
                     }} className="small">Apply</button>
                 </div>
