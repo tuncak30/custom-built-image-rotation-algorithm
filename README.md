@@ -17,5 +17,5 @@
 - **src/Utils.js** -> A simple regex for only allowing numbers and dash on text inputs
 
 ###References 
-We used this question on stackoverflow for creating a rotation algorithm on our canvas elemnt
+We used this question on stackoverflow for creating a rotation algorithm on our canvas element
 https://stackoverflow.com/questions/65836588/rotating-an-image-without-canvasrenderingcontext2d-rotate
