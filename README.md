@@ -1,11 +1,11 @@
-# Accenture Frontend Challange
+# Accenture Frontend Challenge
 ### To run the app with React scripts
 1. Execute `npm install` in the root folder of the challenge.
 2. Execute `npm start` to host the React application on http://localhost:3000.
 
 ### To run the app with Dockerfile
-1. Execute `docker build -t tuncakin/accenture-frontend-challange .`   
-2. Execute `docker run -d -it -p 80:80/tcp --name accenture-frontend-challange tuncakin/accenture-frontend-challange:latest`
+1. Execute `docker build -t tuncakin/accenture-frontend-challenge .`   
+2. Execute `docker run -d -it -p 80:80/tcp --name accenture-frontend-challenge tuncakin/accenture-frontend-challenge:latest`
 3. React application will start on http://localhost
 
 ### File Structure
