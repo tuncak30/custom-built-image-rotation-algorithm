@@ -61,13 +61,16 @@ function Canvas(props) {
     }
 
     function scanLine(ox, oy, ang, r32, w32, W, H) {
+        // We used this question on stackoverflow for creating a rotation algorithm on our canvas element
+        // https://stackoverflow.com/questions/65836588/rotating-an-image-without-canvasrenderingcontext2d-rotate
+
         const xAx = Math.cos(ang);
         const xAy = Math.sin(ang);
         w32.fill(0);
         let rx, ry, idxW, x = 0, y = 0;
         while (y < H) {
             const xx = x - ox, yy = y - oy;
-            rx = xx * xAx - yy * xAy + ox; // Get image coords for row start
+            rx = xx * xAx - yy * xAy + ox;
             ry = xx * xAy + yy * xAx + oy;
             idxW = y * W + x;
             while (x < W) {

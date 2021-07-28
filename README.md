@@ -8,7 +8,7 @@
 2. Execute `docker run -d -it -p 80:80/tcp --name accenture-frontend-challange tuncakin/accenture-frontend-challange:latest`
 3. React application will start on http://localhost
 
-###File Structure
+### File Structure
 - **src/Components** -> Sibling components that create the application
 - **src/Hooks** -> Custom hooks that we use in the project
 - **src/App.css** -> Main styles of the application
@@ -16,6 +16,6 @@
 - **src/index.js** -> Entry point of the application
 - **src/Utils.js** -> A simple regex for only allowing numbers and dash on text inputs
 
-###References 
+### References 
 We used this question on stackoverflow for creating a rotation algorithm on our canvas element
 https://stackoverflow.com/questions/65836588/rotating-an-image-without-canvasrenderingcontext2d-rotate
